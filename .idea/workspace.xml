@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5fe2b312-887f-4717-ae51-479bcad02527" name="Changes" comment="Feito">
-      <change afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/config/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/documentation/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/exception/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/version.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/config/core_constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/api_documentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/documentation/api_documentation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/auth_credential_exception.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/exception/auth_credential_exception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/generic_exception.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/exception/generic_exception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/not_found_exception.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/exception/not_found_exception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/problem.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/exception/problem.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/storage_exception.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/housesoftware/corelibrary/exception/storage_exception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="5fe2b312-887f-4717-ae51-479bcad02527" name="Changes" comment="Iniciando a esteira" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +48,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "prod"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -140,12 +120,29 @@
       <option name="project" value="LOCAL" />
       <updated>1778541737404</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Feito">
+      <option name="closed" value="true" />
+      <created>1778542571668</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778542571668</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Iniciando a esteira">
+      <option name="closed" value="true" />
+      <created>1778542713598</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778542713598</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Iniciando os configs" />
     <MESSAGE value="Feito" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feito" />
+    <MESSAGE value="Iniciando a esteira" />
+    <option name="LAST_COMMIT_MESSAGE" value="Iniciando a esteira" />
   </component>
 </project>

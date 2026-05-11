@@ -16,8 +16,13 @@ pipeline {
         stage('Read Version') {
             steps {
                 script {
-                    def props = readProperties file: 'version.properties'
-                    env.LIB_VERSION = props['version']
+                    def versionFile = readFile('version.properties').trim()
+                    env.LIB_VERSION = versionFile
+                        .split('\n')
+                        .find { it.startsWith('version=') }
+                        .replace('version=', '')
+                        .trim()
+
                     echo "Building core-library-python version: ${env.LIB_VERSION}"
                 }
             }
