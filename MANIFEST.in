@@ -1,0 +1,2 @@
+include version.properties
+include README.md
