@@ -30,19 +30,21 @@ pipeline {
 
         stage('Create Venv') {
             steps {
-                bat """
-                ${PYTHON_VERSION} -m venv .venv
-                .venv\\Scripts\\python -m pip install --upgrade pip
-                """
+                sh '''
+                python3 -m venv .venv
+                . .venv/bin/activate
+                pip install --upgrade pip
+                '''
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                bat """
-                .venv\\Scripts\\pip install -r requirements.txt
-                .venv\\Scripts\\pip install build twine
-                """
+                sh '''
+                . .venv/bin/activate
+                pip install -r requirements.txt
+                pip install build twine
+                '''
             }
         }
 
@@ -66,9 +68,10 @@ pipeline {
 
         stage('Build Package') {
             steps {
-                bat """
-                .venv\\Scripts\\python -m build
-                """
+                sh '''
+                . .venv/bin/activate
+                python -m build
+                '''
             }
         }
 
@@ -76,19 +79,23 @@ pipeline {
             when {
                 branch 'prod'
             }
+
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'nexus-credentials',
                     usernameVariable: 'NEXUS_USER',
                     passwordVariable: 'NEXUS_PASSWORD'
                 )]) {
-                    bat """
-                    .venv\\Scripts\\python -m twine upload ^
-                      --repository-url %NEXUS_REPOSITORY_URL% ^
-                      -u %NEXUS_USER% ^
-                      -p %NEXUS_PASSWORD% ^
+
+                    sh '''
+                    . .venv/bin/activate
+
+                    python -m twine upload \
+                      --repository-url $NEXUS_REPOSITORY_URL \
+                      -u $NEXUS_USER \
+                      -p $NEXUS_PASSWORD \
                       dist/*
-                    """
+                    '''
                 }
             }
         }
