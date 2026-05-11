@@ -35,7 +35,14 @@ pipeline {
                   -v "$PWD":/app \
                   -w /app \
                   $PYTHON_IMAGE \
-                  sh -c "pip install --upgrade pip && pip install -r requirements.txt && pip install build twine && rm -rf dist build src/*.egg-info && python -m build"
+                  /bin/sh -c '
+                    ls -la
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                    pip install build twine
+                    rm -rf dist build src/*.egg-info
+                    python -m build
+                  '
                 '''
             }
         }
