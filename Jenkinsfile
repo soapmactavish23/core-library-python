@@ -58,11 +58,9 @@ pipeline {
 
         stage('Clean Build') {
             steps {
-                bat """
-                if exist dist rmdir /s /q dist
-                if exist build rmdir /s /q build
-                if exist src\\core_library_python.egg-info rmdir /s /q src\\core_library_python.egg-info
-                """
+                sh '''
+                rm -rf dist build src/*.egg-info
+                '''
             }
         }
 
