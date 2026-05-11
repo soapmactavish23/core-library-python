@@ -1,9 +1,13 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.10-slim'
+            args '-u root'
+        }
+    }
 
     environment {
         NEXUS_REPOSITORY_URL = 'https://nexus.house-software.com.br/repository/python-house-libs/'
-        PYTHON_VERSION = 'python'
     }
 
     stages {
@@ -28,31 +32,13 @@ pipeline {
             }
         }
 
-        stage('Create Venv') {
-            steps {
-                sh '''
-                python3 -m venv .venv
-                . .venv/bin/activate
-                pip install --upgrade pip
-                '''
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh '''
-                . .venv/bin/activate
+                python -m pip install --upgrade pip
                 pip install -r requirements.txt
                 pip install build twine
                 '''
-            }
-        }
-
-        stage('Tests') {
-            steps {
-                bat """
-                .venv\\Scripts\\python -m pytest || exit /b 0
-                """
             }
         }
 
@@ -67,7 +53,6 @@ pipeline {
         stage('Build Package') {
             steps {
                 sh '''
-                . .venv/bin/activate
                 python -m build
                 '''
             }
@@ -84,10 +69,7 @@ pipeline {
                     usernameVariable: 'NEXUS_USER',
                     passwordVariable: 'NEXUS_PASSWORD'
                 )]) {
-
                     sh '''
-                    . .venv/bin/activate
-
                     python -m twine upload \
                       --repository-url $NEXUS_REPOSITORY_URL \
                       -u $NEXUS_USER \
@@ -96,16 +78,6 @@ pipeline {
                     '''
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            echo "core-library-python ${env.LIB_VERSION} publicada com sucesso."
-        }
-
-        failure {
-            echo "Falha ao gerar/publicar core-library-python."
         }
     }
 }
