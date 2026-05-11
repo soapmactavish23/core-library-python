@@ -1,13 +1,9 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.10-slim'
-            args '-u root'
-        }
-    }
+    agent any
 
     environment {
         NEXUS_REPOSITORY_URL = 'https://nexus.house-software.com.br/repository/python-house-libs/'
+        PYTHON_IMAGE = 'python:3.10-slim'
     }
 
     stages {
@@ -32,28 +28,14 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                sh '''
-                python -m pip install --upgrade pip
-                pip install -r requirements.txt
-                pip install build twine
-                '''
-            }
-        }
-
-        stage('Clean Build') {
-            steps {
-                sh '''
-                rm -rf dist build src/*.egg-info
-                '''
-            }
-        }
-
         stage('Build Package') {
             steps {
                 sh '''
-                python -m build
+                docker run --rm \
+                  -v "$PWD":/app \
+                  -w /app \
+                  $PYTHON_IMAGE \
+                  sh -c "pip install --upgrade pip && pip install -r requirements.txt && pip install build twine && rm -rf dist build src/*.egg-info && python -m build"
                 '''
             }
         }
@@ -70,11 +52,14 @@ pipeline {
                     passwordVariable: 'NEXUS_PASSWORD'
                 )]) {
                     sh '''
-                    python -m twine upload \
-                      --repository-url $NEXUS_REPOSITORY_URL \
-                      -u $NEXUS_USER \
-                      -p $NEXUS_PASSWORD \
-                      dist/*
+                    docker run --rm \
+                      -v "$PWD":/app \
+                      -w /app \
+                      -e NEXUS_REPOSITORY_URL="$NEXUS_REPOSITORY_URL" \
+                      -e NEXUS_USER="$NEXUS_USER" \
+                      -e NEXUS_PASSWORD="$NEXUS_PASSWORD" \
+                      $PYTHON_IMAGE \
+                      sh -c "pip install twine && python -m twine upload --repository-url $NEXUS_REPOSITORY_URL -u $NEXUS_USER -p $NEXUS_PASSWORD dist/*"
                     '''
                 }
             }
